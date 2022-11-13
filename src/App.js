@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     if (checkLocalData()) {
-      // console.log("GET", getLocalStorage());
+
       setComments(getLocalStorage());
     }
   }, []);
@@ -36,20 +36,19 @@ function App() {
     return d;
   };
 
-
   const updateComments = (id, text) => {
     const commentAdditional = {
       id: Date.now(),
       text: text,
-      author: "Siddharth",
+      author: AUTHOR,
       children: null,
+      likeCount: 0,
       parentId: id,
       createdDate: createDate()
     };
     const updatedComments = [...comments, commentAdditional];
     setComments(updatedComments);
     setLocalStorage(updatedComments);
-    // console.log("Comments->",comments)
   };
 
   const deleteComments = (id) => {
@@ -71,6 +70,7 @@ function App() {
         author: AUTHOR,
         children: null,
         parentId: null,
+        likeCount: 0,
         createdDate: createDate()
       };
       setError(false);
@@ -90,8 +90,9 @@ function App() {
       const editComment = {
         id: comment.id,
         text: text,
-        author: "Siddharth",
+        author: comment.author,
         children: comment.children,
+        likeCount: comment.likeCount,
         parentId: comment.parentId,
         createdDate: createDate()
       };
@@ -102,6 +103,23 @@ function App() {
     } else {
       // setError(true);
     }
+  };
+
+  const upvoteComment = (comment) => {
+    comments = comments.filter((item) => item.id !== comment.id);
+    const editComment = {
+      id: comment.id,
+      text: comment.text,
+      author: comment.author,
+      children: comment.children,
+      likeCount: comment.likeCount + 1,
+      parentId: comment.parentId,
+      createdDate: createDate()
+    };
+
+    const allComments = [editComment, ...comments];
+    setComments(allComments);
+    setLocalStorage(allComments);
   };
 
   const commentTree = TreeCreation(comments);
@@ -138,11 +156,10 @@ function App() {
               updateComments={updateComments}
               deleteComments={deleteComments}
               editNewComment={editNewComment}
+              upvoteComment={upvoteComment}
             />
           );
         })}
-        <br />
-        <br />
       </div>
     </>
   );
@@ -154,7 +171,6 @@ export default App;
 /*
 
 Requirements:-
-
 1. The comments section should be responsive and have optimal layout on all screen sizes.
 2. A user should be able to read, post, edit & delete comments.
 3. A user can reply to a comment, and a reply should be nested inside its parent comment.

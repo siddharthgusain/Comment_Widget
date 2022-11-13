@@ -5,7 +5,8 @@ export const initialComments = [
         text: "Testing comments",
         author: "Siddharth",
         children: null,
-        createdDate: '24/9/2022 08:54:00'
+        likeCount: 0,
+        createdDate: '13/11/2022 08:54:00'
     },
     {
         id: 3,
@@ -13,7 +14,8 @@ export const initialComments = [
         text: "I am doing great",
         author: "Lionel Messi",
         children: null,
-        createdDate: '24/9/2022 09:52:00'
+        likeCount: 0,
+        createdDate: '13/11/2022 09:52:00'
     },
     {
         id: 2,
@@ -21,7 +23,8 @@ export const initialComments = [
         text: "Where are you going bro",
         author: "Cristiano Ronaldo",
         children: null,
-        createdDate: '24/9/2022 09:55:03'
+        likeCount: 0,
+        createdDate: '13/11/2022 09:55:03'
     },
     {
         id: 5,
@@ -29,7 +32,8 @@ export const initialComments = [
         text: "How is the weather toda?",
         author: "Pogba",
         children: null,
-        createdDate: '24/9/2022 12:34:00'
+        likeCount: 0,
+        createdDate: '13/9/2022 12:34:00'
     },
     {
         id: 4,
@@ -37,7 +41,8 @@ export const initialComments = [
         text: "Hows your work going?",
         author: "David",
         children: null,
-        createdDate: '24/9/2022 10:54:09'
+        likeCount: 0,
+        createdDate: '13/9/2022 10:54:09'
     },
     {
         id: 6,
@@ -45,7 +50,8 @@ export const initialComments = [
         text: "Hi everyone",
         author: "Just a Weeb",
         children: null,
-        createdDate: '24/9/2022 15:54:17'
+        likeCount: 0,
+        createdDate: '13/9/2022 15:54:17'
     },
     {
         id: 7,
@@ -53,6 +59,7 @@ export const initialComments = [
         text: "Great",
         author: "Modi",
         children: null,
-        createdDate: '24/9/2022 16:34:09'
+        likeCount: 0,
+        createdDate: '13/9/2022 16:34:09'
     }
 ];

@@ -3,8 +3,11 @@ import { ADD, AUTHOR, CANCEL, DELETE, MSG_ERROR, REPLY, SUPER_USER, EDIT, ADMIN_
 import "../styles/Comment.css";
 import icon from "../assets/icon.png";
 import chat from "../assets/chat.png";
+import unliked from "../assets/unliked.png";
+import deleteComment from "../assets/deleteComment.png";
+import editComment from "../assets/editComment.png";
 
-export default function Comment({ comment, updateComments, deleteComments, editNewComment }) {
+export default function Comment({ comment, updateComments, deleteComments, editNewComment, upvoteComment }) {
 
     const nestedComments = (comment.children || []).map((comment) => {
         return (
@@ -14,6 +17,7 @@ export default function Comment({ comment, updateComments, deleteComments, editN
                 updateComments={updateComments}
                 deleteComments={deleteComments}
                 editNewComment={editNewComment}
+                upvoteComment={upvoteComment}
                 type="child"
             />
         );
@@ -65,6 +69,10 @@ export default function Comment({ comment, updateComments, deleteComments, editN
         }
     }
 
+    const likeComment = (comment) => {
+        upvoteComment(comment);
+    }
+
     return (
 
         <div className="commentContainer">
@@ -82,9 +90,16 @@ export default function Comment({ comment, updateComments, deleteComments, editN
                     </div>
 
                     <div className="commentOptions">
-                        {!isEditClicked && !isReplyClicked && (AUTHOR === comment.author) && <button className="edit" onClick={(e) => onEditClick(comment.text)}>
-                            {EDIT}
-                        </button>}
+                        <div className="likeIconContainer" onClick={(e) => likeComment(comment)}>
+                            <img src={unliked} width="20px" height="20px"></img>
+                            <p>{comment.likeCount}</p>
+                        </div>
+                        {!isEditClicked && !isReplyClicked && (AUTHOR === comment.author)
+                            &&
+                            <button className="edit" onClick={(e) => onEditClick(comment.text)}>
+                                <img src={editComment}></img>
+                                {EDIT}
+                            </button>}
                         {
                             !isReplyClicked && !isEditClicked
                             &&
@@ -93,9 +108,12 @@ export default function Comment({ comment, updateComments, deleteComments, editN
                                 {REPLY}
                             </button>
                         }
-                        {!isReplyClicked && !isEditClicked && (AUTHOR === comment.author || ADMIN_USER) && <button className="delete" onClick={() => deleteComments(comment.id)}>
-                            {DELETE}
-                        </button>}
+                        {!isReplyClicked && !isEditClicked && (AUTHOR === comment.author || ADMIN_USER)
+                            &&
+                            <button className="delete" onClick={() => deleteComments(comment.id)}>
+                                <img src={deleteComment}></img>
+                                {DELETE}
+                            </button>}
                     </div>
                 </div>
             </div>

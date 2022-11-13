@@ -7,7 +7,8 @@ export const ADD_COMMENT = "Add Comment";
 export const CANCEL = "Cancel";
 export const EDIT = "Edit";
 
-export const AUTHOR = "Messi";
+// Currently i am managing author through constants
+export const AUTHOR = "Siddharth";
 
 // Admin User can delete all comments 
 export const ADMIN_USER = true;

@@ -24,6 +24,17 @@
     margin-top: 10px;
 }
 
+.likeIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.likeIconContainer img {
+    margin-right: 10px;
+}
+
 .reply {
     padding: 2px;
     border-radius: 5px;
@@ -31,15 +42,33 @@
     font-size: 13px;
     color: gray;
     margin-right: 20px;
-    background-color: white;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.reply img {
+    margin-right: 6px;
+}
+
 
 .delete {
     padding: 2px;
     border-radius: 5px;
     font-size: 14px;
-    background-color: #ffcbd1;
     margin-right: 20px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.delete img {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
 }
 
 .cancel {
@@ -61,8 +90,18 @@
     padding: 2px 4px;
     font-size: 14px;
     border-radius: 5px;
-    background-color: #ddead1;
+    border: none;
     margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.edit img {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
 }
 
 .innerContainer {
