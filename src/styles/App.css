@@ -1,0 +1,45 @@
+.headingContainer {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.subheadingContainer {
+    text-align: center;
+}
+
+.commentInputContainer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.commentInput {
+    border: 1px solid grey;
+    border-radius: 30px;
+    height: 30px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.commentInput::placeholder {
+    margin-left: 5px;
+}
+
+.commentInput:focus {
+    border: 1px solid black;
+}
+
+.commentSubmitBtn {
+    border-radius: 30px;
+    background-color: #1877f2;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0 16px;
+    font-size: 15px;
+}
+
+.commentSubmitBtn:hover {
+    cursor: pointer;
+    background-color: rgb(72, 116, 249);
+}
