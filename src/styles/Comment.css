@@ -1,0 +1,77 @@
+.commentContainer {
+    padding: 10px;
+    margin: 25px 25px 0;
+    border-radius: 5px;
+    background-color: #f8f8ff;
+}
+
+.author {
+    color: black;
+    margin: 0 20px 2px 0;
+    font-size: 12px;
+}
+
+.text {
+    color: black;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.reply {
+    margin: 5px 0;
+    font-size: 14px;
+    margin-right: 4px;
+    background-color: #8cd3ff;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.delete {
+    margin: 5px 0;
+    padding: 2px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 4px;
+    background-color: #ffcbd1;
+}
+
+.cancel {
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 4px;
+    background-color: #ffcbd1;
+}
+
+.comments {
+    margin: 5px;
+    font-size: 14px;
+    margin-right: 4px;
+    border-radius: 5px;
+    background-color: #ddead1;
+}
+
+.edit {
+    padding: 2px 4px;
+    margin: 5px 4px 5px 0;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #ddead1;
+}
+
+.innerContainer {
+    display: flex;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.plainText {
+    text-align: center;
+    font-size: 24px;
+    margin: 20px;
+}
+
+.newComment {
+    text-align: center;
+    margin: 10px;
+}

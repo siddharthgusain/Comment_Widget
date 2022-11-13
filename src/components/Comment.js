@@ -1,0 +1,108 @@
+import { useState } from "react";
+import { ADD, AUTHOR, CANCEL, DELETE, MSG_ERROR, REPLY, SUPER_USER, EDIT, ADMIN_USER } from "../utils/constants";
+import "../styles/Comment.css";
+
+export default function Comment({ comment, updateComments, deleteComments, editNewComment }) {
+
+    const nestedComments = (comment.children || []).map((comment) => {
+        return (
+            <Comment
+                key={comment.id}
+                comment={comment}
+                updateComments={updateComments}
+                deleteComments={deleteComments}
+                editNewComment={editNewComment}
+                type="child"
+            />
+        );
+    });
+
+    const [isReplyClicked, setIsReplyClicked] = useState(false);
+    const [isEditClicked, setIsEditClicked] = useState(false);
+    const [inputVal, setInput] = useState('');
+    const [messageError, setMessageError] = useState(false);
+    const [editmessageError, setEditMessageError] = useState(false);
+    const [editInputVal, setEditInput] = useState('');
+
+    const onClickReply = (e) => {
+        setMessageError(false);
+        setInput('');
+        setIsReplyClicked(!isReplyClicked);
+    }
+
+    const onEditClick = (text) => {
+        setEditInput(text);
+        setIsEditClicked(!isEditClicked);
+    }
+
+    const onInput = (e) => {
+        setInput(e.target.value);
+    }
+
+    const onEditInput = (e) => {
+        setEditInput(e.target.value);
+    }
+
+    const addComments = () => {
+        if (inputVal) {
+            updateComments(comment.id, inputVal);
+            setIsReplyClicked(!isReplyClicked);
+            setMessageError(false);
+        } else {
+            setMessageError(true);
+        }
+    }
+
+    const editComments = (comment) => {
+        if (editInputVal) {
+            editNewComment(comment, editInputVal);
+            setIsEditClicked(!isEditClicked);
+            setEditMessageError(false);
+        } else {
+            setEditMessageError(true);
+        }
+    }
+
+    return (
+
+        <div className="commentContainer">
+            <div className='innerContainer'>
+                <div className="author">
+                    {comment.author}
+                </div>
+                <div>{comment.createdDate}</div>
+            </div>
+
+
+            <div className='text'>{comment.text}</div>
+            {!isEditClicked && !isReplyClicked && (AUTHOR === comment.author) && <button className="edit" onClick={(e) => onEditClick(comment.text)}>
+                {EDIT}
+            </button>}
+            {!isReplyClicked && !isEditClicked && <button className="reply" onClick={(e) => onClickReply(e)}>
+                {REPLY}
+            </button>}
+            {!isReplyClicked && !isEditClicked && (AUTHOR === comment.author || ADMIN_USER) && <button className="delete" onClick={() => deleteComments(comment.id)}>
+                {DELETE}
+            </button>}
+            {isReplyClicked &&
+                <div>
+                    <input type='text' placeholder='Add Reply' onChange={(e) => onInput(e)} />
+                    <button className='comments' onClick={(e) => addComments(e)}>{ADD}</button>
+                    <button className='cancel' onClick={(e) => setIsReplyClicked(!isReplyClicked)}>{CANCEL}</button>
+                    {messageError && <div style={{ color: 'red', fontSize: '12px' }}>{MSG_ERROR}</div>}
+                </div>
+            }
+            {isEditClicked &&
+                <div>
+                    <input type='text' placeholder='Edit comment' defaultValue={editInputVal} onChange={(e) => onEditInput(e)} />
+                    <button className='comments' onClick={(e) => editComments(comment)}>{ADD}</button>
+                    <button className='cancel' onClick={(e) => setIsEditClicked(!isEditClicked)}>{CANCEL}</button>
+                    {editmessageError && <div style={{ color: 'red', fontSize: '12px' }}>{MSG_ERROR}</div>}
+                </div>
+            }
+
+            {nestedComments}
+        </div>
+
+    );
+}
