@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ADD, AUTHOR, CANCEL, DELETE, MSG_ERROR, REPLY, SUPER_USER, EDIT, ADMIN_USER } from "../utils/constants";
 import "../styles/Comment.css";
+import icon from "../assets/icon.png";
+import chat from "../assets/chat.png";
 
 export default function Comment({ comment, updateComments, deleteComments, editNewComment }) {
 
@@ -67,23 +69,36 @@ export default function Comment({ comment, updateComments, deleteComments, editN
 
         <div className="commentContainer">
             <div className='innerContainer'>
-                <div className="author">
-                    {comment.author}
+                <div className="authorImage">
+                    <img src={icon}></img>
                 </div>
-                <div>{comment.createdDate}</div>
+                <div className="detailsContainer">
+                    <div className="commentDetails">
+                        <div className="author">
+                            {comment.author}
+                        </div>
+                        <div>{comment.createdDate}</div>
+                        <div className='text'>{comment.text}</div>
+                    </div>
+
+                    <div className="commentOptions">
+                        {!isEditClicked && !isReplyClicked && (AUTHOR === comment.author) && <button className="edit" onClick={(e) => onEditClick(comment.text)}>
+                            {EDIT}
+                        </button>}
+                        {
+                            !isReplyClicked && !isEditClicked
+                            &&
+                            <button className="reply" onClick={(e) => onClickReply(e)}>
+                                <img src={chat}></img>
+                                {REPLY}
+                            </button>
+                        }
+                        {!isReplyClicked && !isEditClicked && (AUTHOR === comment.author || ADMIN_USER) && <button className="delete" onClick={() => deleteComments(comment.id)}>
+                            {DELETE}
+                        </button>}
+                    </div>
+                </div>
             </div>
-
-
-            <div className='text'>{comment.text}</div>
-            {!isEditClicked && !isReplyClicked && (AUTHOR === comment.author) && <button className="edit" onClick={(e) => onEditClick(comment.text)}>
-                {EDIT}
-            </button>}
-            {!isReplyClicked && !isEditClicked && <button className="reply" onClick={(e) => onClickReply(e)}>
-                {REPLY}
-            </button>}
-            {!isReplyClicked && !isEditClicked && (AUTHOR === comment.author || ADMIN_USER) && <button className="delete" onClick={() => deleteComments(comment.id)}>
-                {DELETE}
-            </button>}
             {isReplyClicked &&
                 <div>
                     <input type='text' placeholder='Add Reply' onChange={(e) => onInput(e)} />

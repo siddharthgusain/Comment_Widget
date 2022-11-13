@@ -7,7 +7,7 @@ export const ADD_COMMENT = "Add Comment";
 export const CANCEL = "Cancel";
 export const EDIT = "Edit";
 
-export const AUTHOR = "Siddharth";
+export const AUTHOR = "Messi";
 
 // Admin User can delete all comments 
 export const ADMIN_USER = true;

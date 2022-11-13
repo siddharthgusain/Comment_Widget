@@ -1,5 +1,5 @@
 import "./styles/App.css";
-import { WIDGET, ADD_COMMENT, MSG_ERROR } from "./utils/constants";
+import { WIDGET, ADD_COMMENT, MSG_ERROR, AUTHOR } from "./utils/constants";
 import { initialComments } from "./utils/TestData";
 import { useState, useEffect } from "react";
 import { setLocalStorage, checkLocalData, getLocalStorage } from "./utils/localStorage";
@@ -68,7 +68,7 @@ function App() {
       const newComment = {
         id: Date.now(),
         text: newCommentsValue,
-        author: "Siddharth",
+        author: AUTHOR,
         children: null,
         parentId: null,
         createdDate: createDate()
@@ -129,7 +129,7 @@ function App() {
           <div style={{ color: "red", fontSize: "12px" }}>{MSG_ERROR}</div>
         )}
       </div>
-      <div>
+      <div className="commentsContainer">
         {commentTree.map((comment) => {
           return (
             <Comment
